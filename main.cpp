@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
         cout << "Database: " << dbf_filename << endl;
 
         const DbfHeaderPtr header = dbf_table->header();
-        cout << "Type: (" << hex << header->version() << ") " << header->version_description() << endl;
+        cout << "Type: (" << hex << header->version() << dec << ") " << header->version_description() << endl;
         cout << "Memo File: " << (dbf_table->has_memo_file() ? "true" : "false") << endl;
         cout << "Records: " << header->record_count() << endl;
         cout << "Last updated at: " << header->updated_at() << endl;
