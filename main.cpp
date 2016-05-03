@@ -15,11 +15,12 @@ typedef enum Mode {
 } Mode;
 
 void print_usage() {
-    cerr << "usage: dbf2csv [-h|-s|-a|-c|-r] filename" << endl;
+    cerr << "usage: dbf2csv [-h|-v|-s|-c|] filename" << endl;
     cerr << "-h = print this message" << endl;
     cerr << "-v = print the program version" << endl;
     cerr << "-s = print summary information" << endl;
     cerr << "-c = create a CSV file" << endl;
+    cerr << "-k = skip deleted records (default: true)" << endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -27,7 +28,7 @@ int main(int argc, char *argv[]) {
     bool skip_deleted = true;
 
     int opt;
-    while ((opt = getopt(argc, argv, "usd:tq:r:")) != -1) {
+    while ((opt = getopt(argc, argv, "hvsck:")) != -1) {
         switch (opt) {
             case 'v':
                 mode = kVersion;
