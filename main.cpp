@@ -15,12 +15,12 @@ typedef enum Mode {
 } Mode;
 
 void print_usage() {
-    cerr << "usage: dbf2csv [-h|-v|-s|-c|] filename" << endl;
-    cerr << "-h = print this message" << endl;
-    cerr << "-v = print the program version" << endl;
-    cerr << "-s = print summary information" << endl;
-    cerr << "-c = create a CSV file" << endl;
-    cerr << "-k = skip deleted records (default: true)" << endl;
+    cout << "usage: dbf2csv [-h|-v|-s|-c|-k] filename" << endl;
+    cout << "  -h = print this message" << endl;
+    cout << "  -v = print the program version" << endl;
+    cout << "  -s = print summary information" << endl;
+    cout << "  -c = create a CSV file" << endl;
+    cout << "  -k = skip deleted records (default: true)" << endl;
 }
 
 int main(int argc, char *argv[]) {
@@ -54,6 +54,7 @@ int main(int argc, char *argv[]) {
 
     if (mode == kVersion) {
         cout << "dbf2csv version: " << Version << endl;
+        print_usage();
         return 0;
     }
 
