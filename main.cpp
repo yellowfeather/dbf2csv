@@ -24,7 +24,7 @@ void print_usage() {
 }
 
 int main(int argc, char *argv[]) {
-    Mode mode;
+    Mode mode = kVersion;
     bool skip_deleted = true;
 
     int opt;
@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
             cout << endl;
         }
     }
-    else if (mode == kCsv) {
+    else {
         dbf_table->to_csv(cout);
     }
 
