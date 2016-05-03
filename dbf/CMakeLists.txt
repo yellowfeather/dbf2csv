@@ -20,6 +20,7 @@ set(SOURCE_FILES
         DbfRecord.cpp
         DbfTable.cpp
         DbfValue.cpp
+        TypedDbfValue.cpp
         )
 
 add_library(dbf STATIC ${SOURCE_FILES} ${HEADER_FILES})

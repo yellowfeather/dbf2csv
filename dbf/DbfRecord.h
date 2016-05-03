@@ -7,9 +7,9 @@
 
 #include <memory>
 #include <vector>
-#include <boost/any.hpp>
 #include "DbfColumn.h"
 #include "DbfValue.h"
+#include "TypedDbfValue.h"
 
 class DbfTable;
 
@@ -26,6 +26,14 @@ public:
     bool is_deleted() const;
 
     DbfValuePtr value(int index) const;
+
+    template<class T>
+    boost::optional<T> value(int index) const {
+        DbfValuePtr value = values_[index];
+        TypedDbfValue<T> *typed_value = dynamic_cast<TypedDbfValue<T> *>(value.get());
+        return typed_value->value();
+    }
+
     DbfValuePtr value(const std::string& column_name) const;
     std::vector<DbfValuePtr> values() const;
 
