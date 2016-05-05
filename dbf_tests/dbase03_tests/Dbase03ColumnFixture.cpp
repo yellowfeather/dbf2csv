@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <DbfTable.h>
 
-class DbfColumnFixture : public ::testing::Test {
+class Dbase03ColumnFixture : public ::testing::Test {
 protected:
     virtual void SetUp() {
         dbf_table_ = DbfTablePtr(new DbfTable("/Users/chrisr/Development/ClionProjects/dbf2csv/dbf_tests/fixtures/dbase_03.dbf"));
@@ -16,10 +16,10 @@ protected:
     }
 
 public:
-    DbfColumnFixture() : Test() {
+    Dbase03ColumnFixture() : Test() {
     }
 
-    virtual ~DbfColumnFixture() {
+    virtual ~Dbase03ColumnFixture() {
     }
 
     std::vector<DbfColumnPtr> columns() {
@@ -34,12 +34,12 @@ public:
     DbfTablePtr dbf_table_;
 };
 
-TEST_F(DbfColumnFixture, column_count_check) {
+TEST_F(Dbase03ColumnFixture, column_count_check) {
     size_t column_count = columns().size();
     EXPECT_EQ(31, column_count);
 }
 
-TEST_F(DbfColumnFixture, column1_check) {
+TEST_F(Dbase03ColumnFixture, column1_check) {
     DbfColumnPtr col = column(0);
     EXPECT_EQ(0, col->index());
     EXPECT_EQ("Point_ID", col->name());
@@ -47,7 +47,7 @@ TEST_F(DbfColumnFixture, column1_check) {
     EXPECT_EQ(12, col->length());
 }
 
-TEST_F(DbfColumnFixture, column2_check) {
+TEST_F(Dbase03ColumnFixture, column2_check) {
     DbfColumnPtr col = column(1);
     EXPECT_EQ(1, col->index());
     EXPECT_EQ("Type", col->name());
@@ -55,7 +55,7 @@ TEST_F(DbfColumnFixture, column2_check) {
     EXPECT_EQ(20, col->length());
 }
 
-TEST_F(DbfColumnFixture, column3_check) {
+TEST_F(Dbase03ColumnFixture, column3_check) {
     DbfColumnPtr col = column(2);
     EXPECT_EQ(2, col->index());
     EXPECT_EQ("Shape", col->name());
@@ -63,7 +63,7 @@ TEST_F(DbfColumnFixture, column3_check) {
     EXPECT_EQ(20, col->length());
 }
 
-TEST_F(DbfColumnFixture, column4_check) {
+TEST_F(Dbase03ColumnFixture, column4_check) {
     DbfColumnPtr col = column(3);
     EXPECT_EQ(3, col->index());
     EXPECT_EQ("Circular_D", col->name());
@@ -71,7 +71,7 @@ TEST_F(DbfColumnFixture, column4_check) {
     EXPECT_EQ(20, col->length());
 }
 
-TEST_F(DbfColumnFixture, column5_check) {
+TEST_F(Dbase03ColumnFixture, column5_check) {
     DbfColumnPtr col = column(4);
     EXPECT_EQ(4, col->index());
     EXPECT_EQ("Non_circul", col->name());
@@ -79,7 +79,7 @@ TEST_F(DbfColumnFixture, column5_check) {
     EXPECT_EQ(60, col->length());
 }
 
-TEST_F(DbfColumnFixture, column6_check) {
+TEST_F(Dbase03ColumnFixture, column6_check) {
     DbfColumnPtr col = column(5);
     EXPECT_EQ(5, col->index());
     EXPECT_EQ("Flow_prese", col->name());
@@ -87,7 +87,7 @@ TEST_F(DbfColumnFixture, column6_check) {
     EXPECT_EQ(20, col->length());
 }
 
-TEST_F(DbfColumnFixture, column7_check) {
+TEST_F(Dbase03ColumnFixture, column7_check) {
     DbfColumnPtr col = column(6);
     EXPECT_EQ(6, col->index());
     EXPECT_EQ("Condition", col->name());
@@ -95,7 +95,7 @@ TEST_F(DbfColumnFixture, column7_check) {
     EXPECT_EQ(20, col->length());
 }
 
-TEST_F(DbfColumnFixture, column8_check) {
+TEST_F(Dbase03ColumnFixture, column8_check) {
     DbfColumnPtr col = column(7);
     EXPECT_EQ(7, col->index());
     EXPECT_EQ("Comments", col->name());
@@ -103,7 +103,7 @@ TEST_F(DbfColumnFixture, column8_check) {
     EXPECT_EQ(60, col->length());
 }
 
-TEST_F(DbfColumnFixture, column9_check) {
+TEST_F(Dbase03ColumnFixture, column9_check) {
     DbfColumnPtr col = column(8);
     EXPECT_EQ(8, col->index());
     EXPECT_EQ("Date_Visit", col->name());
@@ -111,7 +111,7 @@ TEST_F(DbfColumnFixture, column9_check) {
     EXPECT_EQ(8, col->length());
 }
 
-TEST_F(DbfColumnFixture, column10_check) {
+TEST_F(Dbase03ColumnFixture, column10_check) {
     DbfColumnPtr col = column(9);
     EXPECT_EQ(9, col->index());
     EXPECT_EQ("Time", col->name());
@@ -119,7 +119,7 @@ TEST_F(DbfColumnFixture, column10_check) {
     EXPECT_EQ(10, col->length());
 }
 
-TEST_F(DbfColumnFixture, column11_check) {
+TEST_F(Dbase03ColumnFixture, column11_check) {
     DbfColumnPtr col = column(10);
     EXPECT_EQ(10, col->index());
     EXPECT_EQ("Max_PDOP", col->name());
@@ -128,7 +128,7 @@ TEST_F(DbfColumnFixture, column11_check) {
     EXPECT_EQ(1, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column12_check) {
+TEST_F(Dbase03ColumnFixture, column12_check) {
     DbfColumnPtr col = column(11);
     EXPECT_EQ(11, col->index());
     EXPECT_EQ("Max_HDOP", col->name());
@@ -137,7 +137,7 @@ TEST_F(DbfColumnFixture, column12_check) {
     EXPECT_EQ(1, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column13_check) {
+TEST_F(Dbase03ColumnFixture, column13_check) {
     DbfColumnPtr col = column(12);
     EXPECT_EQ(12, col->index());
     EXPECT_EQ("Corr_Type", col->name());
@@ -145,7 +145,7 @@ TEST_F(DbfColumnFixture, column13_check) {
     EXPECT_EQ(36, col->length());
 }
 
-TEST_F(DbfColumnFixture, column14_check) {
+TEST_F(Dbase03ColumnFixture, column14_check) {
     DbfColumnPtr col = column(13);
     EXPECT_EQ(13, col->index());
     EXPECT_EQ("Rcvr_Type", col->name());
@@ -153,7 +153,7 @@ TEST_F(DbfColumnFixture, column14_check) {
     EXPECT_EQ(36, col->length());
 }
 
-TEST_F(DbfColumnFixture, column15_check) {
+TEST_F(Dbase03ColumnFixture, column15_check) {
     DbfColumnPtr col = column(14);
     EXPECT_EQ(14, col->index());
     EXPECT_EQ("GPS_Date", col->name());
@@ -161,7 +161,7 @@ TEST_F(DbfColumnFixture, column15_check) {
     EXPECT_EQ(8, col->length());
 }
 
-TEST_F(DbfColumnFixture, column16_check) {
+TEST_F(Dbase03ColumnFixture, column16_check) {
     DbfColumnPtr col = column(15);
     EXPECT_EQ(15, col->index());
     EXPECT_EQ("GPS_Time", col->name());
@@ -169,7 +169,7 @@ TEST_F(DbfColumnFixture, column16_check) {
     EXPECT_EQ(10, col->length());
 }
 
-TEST_F(DbfColumnFixture, column17_check) {
+TEST_F(Dbase03ColumnFixture, column17_check) {
     DbfColumnPtr col = column(16);
     EXPECT_EQ(16, col->index());
     EXPECT_EQ("Update_Sta", col->name());
@@ -177,7 +177,7 @@ TEST_F(DbfColumnFixture, column17_check) {
     EXPECT_EQ(36, col->length());
 }
 
-TEST_F(DbfColumnFixture, column18_check) {
+TEST_F(Dbase03ColumnFixture, column18_check) {
     DbfColumnPtr col = column(17);
     EXPECT_EQ(17, col->index());
     EXPECT_EQ("Feat_Name", col->name());
@@ -185,7 +185,7 @@ TEST_F(DbfColumnFixture, column18_check) {
     EXPECT_EQ(20, col->length());
 }
 
-TEST_F(DbfColumnFixture, column19_check) {
+TEST_F(Dbase03ColumnFixture, column19_check) {
     DbfColumnPtr col = column(18);
     EXPECT_EQ(18, col->index());
     EXPECT_EQ("Datafile", col->name());
@@ -193,7 +193,7 @@ TEST_F(DbfColumnFixture, column19_check) {
     EXPECT_EQ(20, col->length());
 }
 
-TEST_F(DbfColumnFixture, column20_check) {
+TEST_F(Dbase03ColumnFixture, column20_check) {
     DbfColumnPtr col = column(19);
     EXPECT_EQ(19, col->index());
     EXPECT_EQ("Unfilt_Pos", col->name());
@@ -202,7 +202,7 @@ TEST_F(DbfColumnFixture, column20_check) {
     EXPECT_EQ(0, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column21_check) {
+TEST_F(Dbase03ColumnFixture, column21_check) {
     DbfColumnPtr col = column(20);
     EXPECT_EQ(20, col->index());
     EXPECT_EQ("Filt_Pos", col->name());
@@ -211,7 +211,7 @@ TEST_F(DbfColumnFixture, column21_check) {
     EXPECT_EQ(0, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column22_check) {
+TEST_F(Dbase03ColumnFixture, column22_check) {
     DbfColumnPtr col = column(21);
     EXPECT_EQ(21, col->index());
     EXPECT_EQ("Data_Dicti", col->name());
@@ -219,7 +219,7 @@ TEST_F(DbfColumnFixture, column22_check) {
     EXPECT_EQ(20, col->length());
 }
 
-TEST_F(DbfColumnFixture, column23_check) {
+TEST_F(Dbase03ColumnFixture, column23_check) {
     DbfColumnPtr col = column(22);
     EXPECT_EQ(22, col->index());
     EXPECT_EQ("GPS_Week", col->name());
@@ -228,7 +228,7 @@ TEST_F(DbfColumnFixture, column23_check) {
     EXPECT_EQ(0, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column24_check) {
+TEST_F(Dbase03ColumnFixture, column24_check) {
     DbfColumnPtr col = column(23);
     EXPECT_EQ(23, col->index());
     EXPECT_EQ("GPS_Second", col->name());
@@ -237,7 +237,7 @@ TEST_F(DbfColumnFixture, column24_check) {
     EXPECT_EQ(3, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column25_check) {
+TEST_F(Dbase03ColumnFixture, column25_check) {
     DbfColumnPtr col = column(24);
     EXPECT_EQ(24, col->index());
     EXPECT_EQ("GPS_Height", col->name());
@@ -246,7 +246,7 @@ TEST_F(DbfColumnFixture, column25_check) {
     EXPECT_EQ(3, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column26_check) {
+TEST_F(Dbase03ColumnFixture, column26_check) {
     DbfColumnPtr col = column(25);
     EXPECT_EQ(25, col->index());
     EXPECT_EQ("Vert_Prec", col->name());
@@ -255,7 +255,7 @@ TEST_F(DbfColumnFixture, column26_check) {
     EXPECT_EQ(1, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column27_check) {
+TEST_F(Dbase03ColumnFixture, column27_check) {
     DbfColumnPtr col = column(26);
     EXPECT_EQ(26, col->index());
     EXPECT_EQ("Horz_Prec", col->name());
@@ -264,7 +264,7 @@ TEST_F(DbfColumnFixture, column27_check) {
     EXPECT_EQ(1, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column28_check) {
+TEST_F(Dbase03ColumnFixture, column28_check) {
     DbfColumnPtr col = column(27);
     EXPECT_EQ(27, col->index());
     EXPECT_EQ("Std_Dev", col->name());
@@ -273,7 +273,7 @@ TEST_F(DbfColumnFixture, column28_check) {
     EXPECT_EQ(6, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column29_check) {
+TEST_F(Dbase03ColumnFixture, column29_check) {
     DbfColumnPtr col = column(28);
     EXPECT_EQ(28, col->index());
     EXPECT_EQ("Northing", col->name());
@@ -282,7 +282,7 @@ TEST_F(DbfColumnFixture, column29_check) {
     EXPECT_EQ(3, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column30_check) {
+TEST_F(Dbase03ColumnFixture, column30_check) {
     DbfColumnPtr col = column(29);
     EXPECT_EQ(29, col->index());
     EXPECT_EQ("Easting", col->name());
@@ -291,7 +291,7 @@ TEST_F(DbfColumnFixture, column30_check) {
     EXPECT_EQ(3, col->decimal());
 }
 
-TEST_F(DbfColumnFixture, column31_check) {
+TEST_F(Dbase03ColumnFixture, column31_check) {
     DbfColumnPtr col = column(30);
     EXPECT_EQ(30, col->index());
     EXPECT_EQ("Point_ID", col->name());

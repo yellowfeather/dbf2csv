@@ -17,8 +17,8 @@
 template <class T>
 class TypedDbfValue : public DbfValue {
 public:
-    TypedDbfValue(DbfColumnPtr column)
-            : DbfValue(column) {
+    TypedDbfValue(DbfColumnPtr column, DbfMemoPtr memo = nullptr)
+            : DbfValue(column, memo) {
     }
 
     void read(std::istream &stream);

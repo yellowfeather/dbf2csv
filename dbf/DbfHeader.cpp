@@ -66,7 +66,6 @@ std::string DbfHeader::version_description() const {
         default:
             description = "Unknown";
             break;
-
     }
 
     return description;

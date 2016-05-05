@@ -10,6 +10,7 @@
 #include <fstream>
 #include "DbfColumn.h"
 #include "DbfHeader.h"
+#include "DbfMemo.h"
 #include "DbfRecord.h"
 
 class DbfTable {
@@ -27,8 +28,11 @@ public:
     void skip_deleted_records(bool skip_deleted_records);
 
     bool has_memo_file() const;
+    std::string memo_filename() const;
+
     DbfHeaderPtr header() const;
     std::vector<DbfColumnPtr> columns();
+    DbfMemoPtr memo() const { return memo_; }
 
     void get_record(DbfRecordPtr &record);
 
@@ -36,12 +40,15 @@ public:
 private:
     void init();
     void read_columns(std::istream &file);
+    DbfMemoPtr create_memo(const std::string &filename) const;
 
     bool skip_deleted_records_;
+    std::string filename_;
     std::ifstream file_;
 
     DbfHeaderPtr header_;
     std::vector<DbfColumnPtr> columns_;
+    DbfMemoPtr memo_;
 };
 
 typedef std::shared_ptr<DbfTable> DbfTablePtr;

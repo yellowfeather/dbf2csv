@@ -5,6 +5,8 @@
 #ifndef DBF2CSV_DBFUTILS_H
 #define DBF2CSV_DBFUTILS_H
 
+#include <istream>
+
 template <class T>
 void read_raw(std::istream& stream, T& value)
 {
