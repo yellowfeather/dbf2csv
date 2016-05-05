@@ -8,6 +8,7 @@
 #include <memory>
 #include <vector>
 #include "DbfColumn.h"
+#include "DbfMemo.h"
 #include "DbfValue.h"
 #include "TypedDbfValue.h"
 
@@ -15,13 +16,12 @@ class DbfTable;
 
 class DbfRecord {
 public:
-    DbfRecord(DbfTable *dbf_table);
+    DbfRecord(DbfTable *dbf_table, DbfMemoPtr memo = nullptr);
 
     void read(std::istream &stream);
 
     // TODO: operator [int] access (DbfColumn index)
     // TODO: operator [string] access (DbfColumn name)
-    // TODO: typed access e.g. T value<T>(int index);
 
     bool is_deleted() const;
 

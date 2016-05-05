@@ -7,7 +7,7 @@
 #include <DbfTable.h>
 #include <TypedDbfValue.h>
 
-class DbfRecordFixture : public ::testing::Test {
+class Dbase03RecordFixture : public ::testing::Test {
 protected:
     virtual void SetUp() {
         dbf_table_ = DbfTablePtr(new DbfTable("/Users/chrisr/Development/ClionProjects/dbf2csv/dbf_tests/fixtures/dbase_03.dbf"));
@@ -18,23 +18,23 @@ protected:
     }
 
 public:
-    DbfRecordFixture() : Test() {
+    Dbase03RecordFixture() : Test() {
     }
 
-    virtual ~DbfRecordFixture() {
+    virtual ~Dbase03RecordFixture() {
     }
 
 
     DbfTablePtr dbf_table_;
 };
 
-TEST_F(DbfRecordFixture, record_count_check) {
+TEST_F(Dbase03RecordFixture, record_count_check) {
     DbfHeaderPtr header(dbf_table_->header());
     long record_count = header->record_count();
     EXPECT_EQ(14, record_count);
 }
 
-TEST_F(DbfRecordFixture, record1_check) {
+TEST_F(Dbase03RecordFixture, record1_check) {
     DbfRecordPtr record(new DbfRecord(dbf_table_.get()));
     dbf_table_->get_record(record);
 
@@ -45,10 +45,10 @@ TEST_F(DbfRecordFixture, record1_check) {
     EXPECT_EQ("CMP", record->value<std::string>(1).value());
     EXPECT_EQ("circular", record->value<std::string>(2).value());
     EXPECT_EQ("12", record->value<std::string>(3).value());
-    EXPECT_EQ("", record->value<std::string>(4).value());
+    EXPECT_FALSE(record->value<std::string>(4));
     EXPECT_EQ("no", record->value<std::string>(5).value());
     EXPECT_EQ("Good", record->value<std::string>(6).value());
-    EXPECT_EQ("", record->value<std::string>(7).value());
+    EXPECT_FALSE(record->value<std::string>(7));
     EXPECT_EQ("20050712", record->value<std::string>(8).value());
     EXPECT_EQ("10:56:30am", record->value<std::string>(9).value());
     EXPECT_EQ(5.2f, record->value<float>(10).value());

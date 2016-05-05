@@ -12,7 +12,10 @@ set(HEADER_FILES
         DbfUtils.h
         DbfValue.h
         TypedDbfValue.h
-        )
+        DbfMemo.h
+        DbfMemoDbase3.h
+        DbfMemoDbase4.h
+        DbfMemoFoxpro.h)
 
 set(SOURCE_FILES
         DbfColumn.cpp
@@ -21,6 +24,9 @@ set(SOURCE_FILES
         DbfTable.cpp
         DbfValue.cpp
         TypedDbfValue.cpp
-        )
+        DbfMemo.cpp
+        DbfMemoDbase3.cpp
+        DbfMemoDbase4.cpp
+        DbfMemoFoxpro.cpp)
 
 add_library(dbf STATIC ${SOURCE_FILES} ${HEADER_FILES})

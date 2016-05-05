@@ -2,11 +2,13 @@
 // Created by Chris Richards on 03/05/2016.
 //
 
+#include <boost/algorithm/string.hpp>
+
 #include "DbfValue.h"
 #include "TypedDbfValue.h"
 
-DbfValue::DbfValue(DbfColumnPtr column)
-    : column_(column) {
+DbfValue::DbfValue(DbfColumnPtr column, DbfMemoPtr memo)
+    : column_(column), memo_(memo) {
     buffer_.resize(column->length());
 }
 
@@ -14,7 +16,7 @@ void DbfValue::buffer_read(std::istream &stream) {
     stream.read(&buffer_[0], column_->length());
 }
 
-DbfValuePtr DbfValue::create(DbfColumnPtr column) {
+DbfValuePtr DbfValue::create(DbfColumnPtr column, DbfMemoPtr memo) {
     DbfValuePtr value;
 
     switch (column->type()) {
@@ -39,13 +41,14 @@ DbfValuePtr DbfValue::create(DbfColumnPtr column) {
             break;
         }
         case DbfColumn::kDateTime:
+            value = DbfValuePtr(new TypedDbfValue<std::string>(column));
             break;
         case DbfColumn::kBoolean: {
             value = DbfValuePtr(new TypedDbfValue<bool>(column));
             break;
         }
         case DbfColumn::kMemo: {
-            value = DbfValuePtr(new TypedDbfValue<std::string>(column));
+            value = DbfValuePtr(new TypedDbfValue<std::string>(column, memo));
             break;
         }
         case DbfColumn::kDouble:
@@ -60,6 +63,16 @@ DbfValuePtr DbfValue::create(DbfColumnPtr column) {
     }
 
     return value;
+}
+
+std::string DbfValue::buffer_as_string() const {
+    if (buffer_[0] ==  '\0') {
+        return std::string();
+    }
+
+    std::string s(&buffer_[0], buffer_.size());
+    boost::trim(s);
+    return s;
 }
 
 

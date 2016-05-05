@@ -7,7 +7,7 @@
 #include "DbfTable.h"
 #include "DbfUtils.h"
 
-DbfRecord::DbfRecord(DbfTable *dbf_table)
+DbfRecord::DbfRecord(DbfTable *dbf_table, DbfMemoPtr memo)
 {
     DbfHeaderPtr header = dbf_table->header();
     record_length_ = header->record_length();
@@ -16,7 +16,7 @@ DbfRecord::DbfRecord(DbfTable *dbf_table)
 
     for (auto it = std::begin(columns_); it!=std::end(columns_); ++it) {
         DbfColumnPtr column(*it);
-        values_.push_back(DbfValue::create(column));
+        values_.push_back(DbfValue::create(column, memo));
     }
 }
 
