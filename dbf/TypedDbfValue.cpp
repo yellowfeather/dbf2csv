@@ -2,6 +2,7 @@
 // Created by Chris Richards on 03/05/2016.
 //
 
+#include <iomanip>
 #include "DbfUtils.h"
 #include "TypedDbfValue.h"
 
@@ -18,14 +19,14 @@ void TypedDbfValue<int>::read(std::istream &stream) {
 }
 
 template <>
-void TypedDbfValue<float>::read(std::istream &stream) {
+void TypedDbfValue<double>::read(std::istream &stream) {
     buffer_read(stream);
     std::string s(buffer_as_string());
     if (s.empty()) {
         value_ = boost::none;
     }
     else {
-        value_ = std::stof(s);
+        value_ = std::stod(s);
     }
 }
 
@@ -74,11 +75,13 @@ void TypedDbfValue<std::string>::read(std::istream &stream) {
     }
 }
 
-
 template <>
-void TypedDbfValue<float>::to_csv(std::ostream &os) const {
+void TypedDbfValue<double>::to_csv(std::ostream &os) const {
     if (value_ != boost::none) {
-        os << *value_;
+//        char *fmt = malloc(20);
+//        sprintf(fmt, "%%%d.%df", column_->length(), column_->decimal());
+//        fprintf(fp, fmt, *(double *)begin);
+        os << std::fixed << std::setprecision(column_->decimal()) << *value_;
     }
 }
 

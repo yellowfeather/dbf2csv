@@ -26,14 +26,14 @@ DbfValuePtr DbfValue::create(DbfColumnPtr column, DbfMemoPtr memo) {
                 value = DbfValuePtr(new TypedDbfValue<int>(column));
             }
             else {
-                value = DbfValuePtr(new TypedDbfValue<float>(column));
+                value = DbfValuePtr(new TypedDbfValue<double>(column));
             }
             break;
         case DbfColumn::kSignedLong:
             value = DbfValuePtr(new TypedDbfValue<long>(column));
             break;
         case DbfColumn::kFloat:
-            value = DbfValuePtr(new TypedDbfValue<float>(column));
+            value = DbfValuePtr(new TypedDbfValue<double>(column));
             break;
         case DbfColumn::kCurrency:
             value = DbfValuePtr(new DbfValueCurrency(column));
@@ -54,7 +54,7 @@ DbfValuePtr DbfValue::create(DbfColumnPtr column, DbfMemoPtr memo) {
             break;
         }
         case DbfColumn::kDouble:
-            value = DbfValuePtr(new TypedDbfValue<float>(column));
+            value = DbfValuePtr(new TypedDbfValue<double>(column));
             break;
         case DbfColumn::kGeneral:
         case DbfColumn::kCharacter:

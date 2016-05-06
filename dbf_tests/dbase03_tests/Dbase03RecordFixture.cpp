@@ -51,8 +51,8 @@ TEST_F(Dbase03RecordFixture, record1_check) {
     EXPECT_FALSE(record->value<std::string>(7));
     EXPECT_EQ("20050712", record->value<std::string>(8).value());
     EXPECT_EQ("10:56:30am", record->value<std::string>(9).value());
-    EXPECT_EQ(5.2f, record->value<float>(10).value());
-    EXPECT_EQ(2.0f, record->value<float>(11).value());
+    EXPECT_EQ(5.2, record->value<double>(10).value());
+    EXPECT_EQ(2.0, record->value<double>(11).value());
     EXPECT_EQ("Postprocessed Code", record->value<std::string>(12).value());
     EXPECT_EQ("GeoXT", record->value<std::string>(13).value());
     EXPECT_EQ("20050712", record->value<std::string>(14).value());
@@ -64,12 +64,12 @@ TEST_F(Dbase03RecordFixture, record1_check) {
     EXPECT_EQ(2, record->value<int>(20).value());
     EXPECT_EQ("MS4", record->value<std::string>(21).value());
     EXPECT_EQ(1331, record->value<int>(22).value());
-    EXPECT_EQ(226625.0f, record->value<float>(23).value());
-    EXPECT_EQ(1131.323f, record->value<float>(24).value());
-    EXPECT_EQ(3.1f, record->value<float>(25).value());
-    EXPECT_EQ(1.3f, record->value<float>(26).value());
-    EXPECT_EQ(0.897088f, record->value<float>(27).value());
-    EXPECT_EQ(557904.898f, record->value<float>(28).value());
-    EXPECT_EQ(2212577.192f, record->value<float>(29).value());
+    EXPECT_EQ(226625.0, record->value<double>(23).value());
+    EXPECT_EQ(1131.323, record->value<double>(24).value());
+    EXPECT_EQ(3.1, record->value<double>(25).value());
+    EXPECT_EQ(1.3, record->value<double>(26).value());
+    EXPECT_EQ(0.897088, record->value<double>(27).value());
+    EXPECT_EQ(557904.898, record->value<double>(28).value());
+    EXPECT_EQ(2212577.192, record->value<double>(29).value());
     EXPECT_EQ(401, record->value<int>(30).value());
 }

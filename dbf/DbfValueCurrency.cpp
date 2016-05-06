@@ -6,7 +6,7 @@
 #include "DbfUtils.h"
 
 DbfValueCurrency::DbfValueCurrency(DbfColumnPtr column)
-    : TypedDbfValue<float>(column) {
+    : TypedDbfValue<double>(column) {
 
 }
 

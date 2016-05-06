@@ -42,7 +42,7 @@ TEST_F(Dbase30RecordFixture, record1_check) {
     EXPECT_EQ(145, values.size());
 
     EXPECT_EQ("1999.1", record->value<std::string>(0).value());
-    EXPECT_FALSE(record->value<float>(1));
+    EXPECT_FALSE(record->value<double>(1));
     EXPECT_FALSE(record->value<std::string>(2));
     EXPECT_FALSE(record->value<std::string>(3));
     EXPECT_EQ("File Cabinet 2", record->value<std::string>(4).value());

@@ -8,7 +8,7 @@
 
 #include "TypedDbfValue.h"
 
-class DbfValueCurrency : public TypedDbfValue<float> {
+class DbfValueCurrency : public TypedDbfValue<double> {
 public:
     DbfValueCurrency(DbfColumnPtr column);
 

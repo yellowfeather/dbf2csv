@@ -46,7 +46,7 @@ TEST_F(Dbase31RecordFixture, record1_check) {
     EXPECT_EQ(1, record->value<long>(2).value());
     EXPECT_EQ(1, record->value<long>(3).value());
     EXPECT_EQ("10 boxes x 20 bags", record->value<std::string>(4).value());
-    EXPECT_EQ(18.0f, record->value<float>(5).value());
+    EXPECT_EQ(18.0, record->value<double>(5).value());
     EXPECT_EQ(39, record->value<long>(6).value());
     EXPECT_FALSE(record->value<long>(7));
     EXPECT_EQ(10, record->value<long>(8).value());
