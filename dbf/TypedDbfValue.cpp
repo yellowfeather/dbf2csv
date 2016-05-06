@@ -31,13 +31,12 @@ void TypedDbfValue<float>::read(std::istream &stream) {
 
 template <>
 void TypedDbfValue<long>::read(std::istream &stream) {
-    buffer_read(stream);
-    std::string s(buffer_as_string());
-    if (s.empty()) {
+    if (stream.peek() == '\0') {
+        buffer_read(stream);
         value_ = boost::none;
     }
     else {
-        value_ = std::stol(s);
+        value_ = read_raw<uint32_t>(stream);
     }
 }
 

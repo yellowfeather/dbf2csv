@@ -39,7 +39,7 @@ void DbfTable::init() {
 
     if (header_->is_foxpro()) {
         // skip database container (263 bytes)
-        file_.seekg(263, std::ios_base::cur);
+        // file_.seekg(263, std::ios_base::cur);
     }
 
     std::string f(memo_filename());

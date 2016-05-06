@@ -21,7 +21,7 @@ public:
             : DbfValue(column, memo) {
     }
 
-    void read(std::istream &stream);
+    virtual void read(std::istream &stream);
 
     void to_csv(std::ostream &os) const {
         if (value_ != boost::none) {
@@ -33,7 +33,7 @@ public:
         return value_;
     }
 
-private:
+protected:
     boost::optional<T> value_;
 };
 

@@ -6,6 +6,7 @@
 
 #include "DbfValue.h"
 #include "TypedDbfValue.h"
+#include "DbfValueCurrency.h"
 
 DbfValue::DbfValue(DbfColumnPtr column, DbfMemoPtr memo)
     : column_(column), memo_(memo) {
@@ -35,6 +36,7 @@ DbfValuePtr DbfValue::create(DbfColumnPtr column, DbfMemoPtr memo) {
             value = DbfValuePtr(new TypedDbfValue<float>(column));
             break;
         case DbfColumn::kCurrency:
+            value = DbfValuePtr(new DbfValueCurrency(column));
             break;
         case DbfColumn::kDate: {
             value = DbfValuePtr(new TypedDbfValue<std::string>(column));
