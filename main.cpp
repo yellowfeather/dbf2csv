@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
         for (auto it = std::begin(columns); it != std::end(columns); ++it) {
             DbfColumnPtr column(*it);
             cout << left << setw(17) << column->name();
-            cout << left << setw(11) << column->type();
+            cout << left << setw(11) << (char)column->type();
             cout << left << setw(11) << column->length();
             cout << left << column->decimal();
             cout << endl;
