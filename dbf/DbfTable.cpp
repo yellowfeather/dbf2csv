@@ -120,7 +120,7 @@ void DbfTable::to_csv(std::ostream &os) {
 
     // write csv lines
     DbfRecordPtr record = DbfRecordPtr(new DbfRecord(this, memo_));
-    while (good()) {
+    for (int index = 0; index < header_->record_count(); ++index) {
         get_record(record);
         record->to_csv(os, skip_deleted_records_);
     }
