@@ -37,10 +37,7 @@ void DbfTable::init() {
     header_ = DbfHeaderPtr(new DbfHeader(file_));
     read_columns(file_);
 
-    if (header_->is_foxpro()) {
-        // skip database container (263 bytes)
-        // file_.seekg(263, std::ios_base::cur);
-    }
+    seek_to_record(0);
 
     std::string f(memo_filename());
     if (!f.empty()) {
@@ -161,4 +158,13 @@ DbfMemoPtr DbfTable::create_memo(const std::string &filename) const {
     }
 
     return memo;
+}
+
+void DbfTable::seek(const int &offset) {
+    std::streampos pos = header_->header_length() + offset;
+    file_.seekg(pos, std::ios::beg);
+}
+
+void DbfTable::seek_to_record(const int &index) {
+    seek(index * header_->record_length());
 }

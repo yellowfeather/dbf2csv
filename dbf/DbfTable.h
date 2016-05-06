@@ -42,6 +42,9 @@ private:
     void read_columns(std::istream &file);
     DbfMemoPtr create_memo(const std::string &filename) const;
 
+    void seek(const int &offset);
+    void seek_to_record(const int &index);
+
     bool skip_deleted_records_;
     std::string filename_;
     std::ifstream file_;
