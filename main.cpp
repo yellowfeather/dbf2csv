@@ -2,6 +2,7 @@
 #include <vector>
 #include <sstream>
 #include <iomanip>
+#include <boost/filesystem/operations.hpp>
 #include "DbfTable.h"
 #include "Version.h"
 
@@ -63,7 +64,7 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    string dbf_filename = argv[optind];
+    string dbf_filename = boost::filesystem::absolute(argv[optind]).string();
     DbfTablePtr dbf_table = DbfTablePtr(new DbfTable(dbf_filename, skip_deleted));
 
     if (!dbf_table->good()) {
