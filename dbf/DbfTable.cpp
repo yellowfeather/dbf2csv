@@ -111,18 +111,18 @@ void DbfTable::to_csv(std::ostream &os) {
             os << ",";
         }
     }
+
+    if (!skip_deleted_records_) {
+        os << ",deleted";
+    }
+
     os << std::endl;
 
     // write csv lines
     DbfRecordPtr record = DbfRecordPtr(new DbfRecord(this, memo_));
     while (good()) {
         get_record(record);
-
-        if (record->is_deleted() && skip_deleted_records_) {
-            continue;
-        }
-
-        record->to_csv(os);
+        record->to_csv(os, skip_deleted_records_);
     }
 }
 

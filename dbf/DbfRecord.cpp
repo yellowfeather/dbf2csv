@@ -47,7 +47,11 @@ std::vector<DbfValuePtr> DbfRecord::values() const {
 }
 
 
-void DbfRecord::to_csv(std::ostream &os) {
+void DbfRecord::to_csv(std::ostream &os, const bool skip_deleted_records) {
+    if (is_deleted() && skip_deleted_records) {
+        return;
+    }
+
     for (auto it = std::begin(values_); it != std::end(values_); ++it) {
         DbfValuePtr value(*it);
         value->to_csv(os);
@@ -55,6 +59,10 @@ void DbfRecord::to_csv(std::ostream &os) {
         if (it != (std::end(values_) - 1)) {
             os << ",";
         }
+    }
+
+    if (!skip_deleted_records) {
+        os << "," << is_deleted();
     }
 
     os << std::endl;
