@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    string dbf_filename = boost::filesystem::absolute(argv[optind]).string();
+    string dbf_filename = argv[optind];
     DbfTablePtr dbf_table = DbfTablePtr(new DbfTable(dbf_filename, skip_deleted));
 
     if (!dbf_table->good()) {

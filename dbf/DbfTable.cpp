@@ -25,7 +25,9 @@ DbfTable::~DbfTable() {
 
 void DbfTable::open(const std::string& filename) {
     filename_ = filename;
-    file_.open(filename, std::ios::binary | std::ios::in);
+
+    boost::filesystem::path p = boost::filesystem::absolute(filename);
+    file_.open(p.string(), std::ios::binary | std::ios::in);
     init();
 }
 
@@ -63,7 +65,7 @@ bool DbfTable::has_memo_file() const {
 }
 
 std::string DbfTable::memo_filename() const {
-    boost::filesystem::path dbf_path(filename_);
+    boost::filesystem::path dbf_path(boost::filesystem::absolute(filename_));
 
     boost::filesystem::path memo_path;
 
