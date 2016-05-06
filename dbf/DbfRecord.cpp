@@ -62,7 +62,7 @@ void DbfRecord::to_csv(std::ostream &os, const bool skip_deleted_records) {
     }
 
     if (!skip_deleted_records) {
-        os << "," << is_deleted();
+        os << "," << (is_deleted() ? 'T' : 'F');
     }
 
     os << std::endl;

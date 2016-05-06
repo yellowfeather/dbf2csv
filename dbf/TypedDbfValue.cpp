@@ -63,14 +63,14 @@ void TypedDbfValue<std::string>::read(std::istream &stream) {
         value_ = memo_->get(start_block);
     }
     else {
-        buffer_read(stream);
-        std::string s(buffer_as_string());
+    buffer_read(stream);
+    std::string s(buffer_as_string());
 
-        if (s.empty()) {
-            value_ = boost::none;
-        }
-        else {
-            value_ = s;
+    if (s.empty()) {
+        value_ = boost::none;
+    }
+    else {
+        value_ = s;
         }
     }
 }
@@ -88,7 +88,7 @@ void TypedDbfValue<double>::to_csv(std::ostream &os) const {
 template <>
 void TypedDbfValue<bool>::to_csv(std::ostream &os) const {
     if (value_ != boost::none) {
-        os << *value_;
+        os << (*value_ ? 'T' : 'F');
     }
 }
 
