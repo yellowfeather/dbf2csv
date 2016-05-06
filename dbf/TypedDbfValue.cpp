@@ -92,11 +92,24 @@ void TypedDbfValue<bool>::to_csv(std::ostream &os) const {
 template <>
 void TypedDbfValue<std::string>::to_csv(std::ostream &os) const {
     if (value_ != boost::none) {
-        std::string value = *value_;
-        // TODO: escape double quotes ',', '"', '\r', '\n'
-        // TODO: enclose in double quotes if required
-        // TODO: sanitize ???
-        os << value;
+        std::string value(*value_);
+
+        bool enclose_in_double_quotes = false;
+
+        if (value.find("\"") != std::string::npos) {
+            enclose_in_double_quotes = true;
+            boost::replace_all(value, "\"", "\"\"");
+        }
+        else if (value.find_first_of(",\r\n") != std::string::npos) {
+            enclose_in_double_quotes = true;
+        }
+
+        if (enclose_in_double_quotes) {
+            os << '"' << value << '"';
+        }
+        else {
+            os << value;
+        }
     }
 }
 
