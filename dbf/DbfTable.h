@@ -36,7 +36,7 @@ public:
 
     void get_record(DbfRecordPtr &record);
 
-    void to_csv(std::ostream &os);
+    void to_csv(std::ostream &os, const bool lowercase_header_names);
 private:
     void init();
     void read_columns(std::istream &file);

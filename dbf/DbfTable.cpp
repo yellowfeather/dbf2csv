@@ -102,11 +102,17 @@ void DbfTable::get_record(DbfRecordPtr &record) {
 }
 
 
-void DbfTable::to_csv(std::ostream &os) {
+void DbfTable::to_csv(std::ostream &os, const bool lowercase_header_names) {
     // write csv header
     for (auto it = std::begin(columns_); it != std::end(columns_); ++it) {
         DbfColumnPtr column(*it);
-        os << column->name();
+
+        std::string name(column->name());
+        if (lowercase_header_names) {
+            boost::to_lower(name);
+        }
+
+        os << name;
         if (it != (std::end(columns_) - 1)) {
             os << ",";
         }

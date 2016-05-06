@@ -21,14 +21,16 @@ void print_usage() {
     cout << "  -s = print summary information" << endl;
     cout << "  -c = create a CSV file" << endl;
     cout << "  -k = skip deleted records (default: true)" << endl;
+    cout << "  -l = output csv header names in lowercase (default: false)" << endl;
 }
 
 int main(int argc, char *argv[]) {
     Mode mode = kVersion;
     bool skip_deleted = true;
+    bool lowercase_header_names = false;
 
     int opt;
-    while ((opt = getopt(argc, argv, "hvsck:")) != -1) {
+    while ((opt = getopt(argc, argv, "hvsck:l:")) != -1) {
         switch (opt) {
             case 'v':
                 mode = kVersion;
@@ -41,6 +43,9 @@ int main(int argc, char *argv[]) {
                 break;
             case 'k':
                 skip_deleted = (optarg[0] == 'Y' || optarg[0] == 'y');
+                break;
+            case 'l':
+                lowercase_header_names = (optarg[0] == 'Y' || optarg[0] == 'y');
                 break;
             case 'h':
                 print_usage();
@@ -91,7 +96,7 @@ int main(int argc, char *argv[]) {
         }
     }
     else {
-        dbf_table->to_csv(cout);
+        dbf_table->to_csv(cout, lowercase_header_names);
     }
 
     return 0;
