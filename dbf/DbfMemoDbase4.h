@@ -13,7 +13,7 @@ public:
     DbfMemoDbase4(const std::string &filename);
     virtual ~DbfMemoDbase4();
 
-    std::string build_memo(const int start_block);
+    std::string build_memo(const long &start_block);
 };
 
 

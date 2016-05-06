@@ -59,18 +59,31 @@ void TypedDbfValue<bool>::read(std::istream &stream) {
 template <>
 void TypedDbfValue<std::string>::read(std::istream &stream) {
     if (memo_) {
-        int start_block = read_raw<uint32_t>(stream);
-        value_ = memo_->get(start_block);
+        if (column_->length() == 4) {
+            int start_block = read_raw<uint32_t>(stream);
+            value_ = memo_->get(start_block);
+        }
+        else {
+            buffer_read(stream);
+            std::string s(buffer_as_string());
+            if (s.empty()) {
+                value_ = boost::none;
+            }
+            else {
+                unsigned long start_block = std::stoul(s);
+                value_ = memo_->get(start_block);
+            }
+        }
     }
     else {
-    buffer_read(stream);
-    std::string s(buffer_as_string());
+        buffer_read(stream);
+        std::string s(buffer_as_string());
 
-    if (s.empty()) {
-        value_ = boost::none;
-    }
-    else {
-        value_ = s;
+        if (s.empty()) {
+            value_ = boost::none;
+        }
+        else {
+            value_ = s;
         }
     }
 }
@@ -78,9 +91,6 @@ void TypedDbfValue<std::string>::read(std::istream &stream) {
 template <>
 void TypedDbfValue<double>::to_csv(std::ostream &os) const {
     if (value_ != boost::none) {
-//        char *fmt = malloc(20);
-//        sprintf(fmt, "%%%d.%df", column_->length(), column_->decimal());
-//        fprintf(fp, fmt, *(double *)begin);
         os << std::fixed << std::setprecision(column_->decimal()) << *value_;
     }
 }

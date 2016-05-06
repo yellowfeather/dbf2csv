@@ -17,7 +17,7 @@ DbfMemoFoxpro::~DbfMemoFoxpro() {
 
 }
 
-std::string DbfMemoFoxpro::build_memo(const int start_block) {
+std::string DbfMemoFoxpro::build_memo(const long &start_block) {
     int pos = offset(start_block);
     file_.seekg(pos);
 

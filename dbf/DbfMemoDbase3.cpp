@@ -16,7 +16,7 @@ DbfMemoDbase3::~DbfMemoDbase3() {
 
 }
 
-std::string DbfMemoDbase3::build_memo(const int start_block) {
+std::string DbfMemoDbase3::build_memo(const long &start_block) {
     int pos = offset(start_block);
     file_.seekg(pos);
 

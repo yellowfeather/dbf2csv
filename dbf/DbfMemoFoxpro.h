@@ -12,7 +12,7 @@ public:
     DbfMemoFoxpro(const std::string &filename);
     virtual ~DbfMemoFoxpro();
 
-    std::string build_memo(const int start_block);
+    std::string build_memo(const long &start_block);
 
 private:
     int calc_block_size();

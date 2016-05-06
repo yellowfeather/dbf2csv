@@ -31,7 +31,7 @@ bool DbfMemo::good() const {
     return file_.good();
 }
 
-boost::optional<std::string> DbfMemo::get(const int start_block) {
+boost::optional<std::string> DbfMemo::get(const long &start_block) {
     if (start_block <= 0) {
         return boost::optional<std::string>();
     }
@@ -40,11 +40,11 @@ boost::optional<std::string> DbfMemo::get(const int start_block) {
     return boost::optional<std::string>(s);
 }
 
-int DbfMemo::offset(const int start_block) {
+int DbfMemo::offset(const long &start_block) {
     return start_block * block_size();
 }
 
-int DbfMemo::content_size(const int memo_size) {
+int DbfMemo::content_size(const int &memo_size) {
     return (memo_size - block_size()) + kBlockHeaderSize;
 }
 
