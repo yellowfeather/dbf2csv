@@ -20,9 +20,9 @@ void DbfColumn::read(std::istream &stream) {
 
     stream.read(&name_[0], 11);
 
-    std::vector<char>::iterator it = std::find(name_.begin(), name_.end(), '\0');
-    if (it != name_.end()) {
-        name_.erase(it, name_.end());
+    size_t pos = name_.find('\0');
+    if (pos != std::string::npos) {
+        name_.erase(pos);
     }
 
     type_ = (DbfColumnType)read_raw<uint8_t>(stream);
