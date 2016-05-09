@@ -12,7 +12,7 @@ if (Boost_FOUND)
 endif ()
 
 set(SOURCE_FILES main.cpp)
-set(HEADER_FILES version.h)
+set(HEADER_FILES Version.h)
 
 add_executable(dbf2csv ${SOURCE_FILES} ${HEADER_FILES})
 
