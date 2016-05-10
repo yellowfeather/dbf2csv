@@ -37,7 +37,9 @@ public:
     DbfValuePtr value(const std::string& column_name) const;
     std::vector<DbfValuePtr> values() const;
 
-    void to_csv(std::ostream &os, const bool skip_deleted_records);
+    void to_csv(std::ostream &os,
+                const bool skip_deleted_records,
+                const std::string &append_csv_data);
 
 private:
     bool is_deleted_;

@@ -47,7 +47,9 @@ std::vector<DbfValuePtr> DbfRecord::values() const {
 }
 
 
-void DbfRecord::to_csv(std::ostream &os, const bool skip_deleted_records) {
+void DbfRecord::to_csv(std::ostream &os,
+                       const bool skip_deleted_records,
+                       const std::string &append_csv_data) {
     if (is_deleted() && skip_deleted_records) {
         return;
     }
@@ -63,6 +65,10 @@ void DbfRecord::to_csv(std::ostream &os, const bool skip_deleted_records) {
 
     if (!skip_deleted_records) {
         os << "," << (is_deleted() ? 'T' : 'F');
+    }
+
+    if (!append_csv_data.empty()) {
+        os << "," << append_csv_data;
     }
 
     os << std::endl;

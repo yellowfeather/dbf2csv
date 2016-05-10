@@ -104,7 +104,10 @@ void DbfTable::get_record(DbfRecordPtr &record) {
 }
 
 
-void DbfTable::to_csv(std::ostream &os, const bool lowercase_header_names) {
+void DbfTable::to_csv(std::ostream &os,
+                      const bool lowercase_header_names,
+                      const std::string &append_csv_header,
+                      const std::string &append_csv_data) {
     // write csv header
     for (auto it = std::begin(columns_); it != std::end(columns_); ++it) {
         DbfColumnPtr column(*it);
@@ -124,13 +127,17 @@ void DbfTable::to_csv(std::ostream &os, const bool lowercase_header_names) {
         os << ",deleted";
     }
 
+    if (!append_csv_header.empty()) {
+        os << "," << append_csv_header;
+    }
+
     os << std::endl;
 
     // write csv lines
     DbfRecordPtr record = DbfRecordPtr(new DbfRecord(this, memo_));
     for (int index = 0; index < header_->record_count(); ++index) {
         get_record(record);
-        record->to_csv(os, skip_deleted_records_);
+        record->to_csv(os, skip_deleted_records_, append_csv_data);
     }
 }
 

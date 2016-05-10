@@ -17,40 +17,56 @@ typedef enum Mode {
 
 void print_usage() {
     cout << "usage: dbf2csv [-h|-v|-s|-c|-k] filename" << endl;
-    cout << "  -h = print this message" << endl;
-    cout << "  -v = print the program version" << endl;
-    cout << "  -s = print summary information" << endl;
+    cout << "  -a = append CSV header and data (format: '<header><separator><data>', separator: \\t, \\r, \\n, ;)" << endl;
     cout << "  -c = create a CSV file" << endl;
+    cout << "  -h = print this message" << endl;
     cout << "  -k = skip deleted records (default: true)" << endl;
     cout << "  -l = output csv header names in lowercase (default: false)" << endl;
+    cout << "  -s = print summary information" << endl;
+    cout << "  -v = print the program version" << endl;
 }
 
 int main(int argc, char *argv[]) {
     Mode mode = kVersion;
     bool skip_deleted = true;
     bool lowercase_header_names = false;
+    std::string append_csv_header;
+    std::string append_csv_data;
 
     int opt;
-    while ((opt = getopt(argc, argv, "hvsck:l:")) != -1) {
+    while ((opt = getopt(argc, argv, "a:chk:l:sv")) != -1) {
         switch (opt) {
-            case 'v':
-                mode = kVersion;
+            case 'a': {
+                std::vector<std::string> parts;
+                boost::split(parts, optarg, boost::is_any_of("\t\r\n;"));
+                if (parts.size() == 2) {
+                    append_csv_header = parts[0];
+                    append_csv_data = parts[1];
+                }
+                else {
+                    cerr << "Invalid append option: '" << optopt << "'" << endl;
+                    return 1;
+                }
                 break;
-            case 's':
-                mode = kSummary;
-                break;
+            }
             case 'c':
                 mode = kCsv;
                 break;
+            case 'h':
+                print_usage();
+                return 0;
             case 'k':
                 skip_deleted = (optarg[0] == 'Y' || optarg[0] == 'y');
                 break;
             case 'l':
                 lowercase_header_names = (optarg[0] == 'Y' || optarg[0] == 'y');
                 break;
-            case 'h':
-                print_usage();
-                return 0;
+            case 's':
+                mode = kSummary;
+                break;
+            case 'v':
+                mode = kVersion;
+                break;
             default:
                 cerr << "Unrecognized option: '" << optopt << "'" << endl;
                 print_usage();
@@ -97,7 +113,7 @@ int main(int argc, char *argv[]) {
         }
     }
     else {
-        dbf_table->to_csv(cout, lowercase_header_names);
+        dbf_table->to_csv(cout, lowercase_header_names, append_csv_header, append_csv_data);
     }
 
     return 0;
