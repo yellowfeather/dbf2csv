@@ -3,7 +3,7 @@ project(dbf2csv)
 
 add_definitions(-std=c++11)
 
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s -O3")
 
 set (Boost_USE_STATIC_LIBS ON)
 set (Boost_USE_MULTITHREAD ON)
@@ -23,7 +23,7 @@ include_directories(dbf)
 add_subdirectory(dbf)
 add_subdirectory(dbf_tests)
 
-set(CMAKE_EXE_LINKER_FLAGS=-static-libgcc -static-libstdc++ -static)
+set(CMAKE_EXE_LINKER_FLAGS -static)
 
 target_link_libraries(dbf2csv dbf)
 target_link_libraries(dbf2csv ${Boost_LIBRARIES})
