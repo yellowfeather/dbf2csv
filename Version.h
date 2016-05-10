@@ -5,6 +5,6 @@
 #ifndef DBF2CSV_VERSION_H
 #define DBF2CSV_VERSION_H
 
-static const char *Version = "1.0.0";
+static const char *Version = "1.1.0";
 
 #endif //DBF2CSV_VERSION_H
