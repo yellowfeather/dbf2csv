@@ -14,7 +14,13 @@ void TypedDbfValue<int>::read(std::istream &stream) {
         value_ = boost::none;
     }
     else {
-        value_ = std::stoi(s);
+        try {
+            value_ = std::stoi(s);
+        }
+        catch (std::exception &ex) {
+            value_ = boost::none;
+            std::cerr << "Exception: " << ex.what() << ", column: " << column_->name() << ", value: " << s << std::endl;
+        }
     }
 }
 
@@ -26,7 +32,13 @@ void TypedDbfValue<double>::read(std::istream &stream) {
         value_ = boost::none;
     }
     else {
-        value_ = std::stod(s);
+        try {
+            value_ = std::stod(s);
+        }
+        catch (std::exception &ex) {
+            value_ = boost::none;
+            std::cerr << "Exception: " << ex.what() << ", column: " << column_->name() << ", value: " << s << std::endl;
+        }
     }
 }
 
