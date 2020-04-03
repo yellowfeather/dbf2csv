@@ -145,7 +145,7 @@ void DbfTable::read_columns(std::istream &stream) {
     int index = 0;
     columns_.clear();
 
-    while (stream.peek() != 0x0D) {
+    while (stream.peek() != 0x0D && !stream.eof()) {
         DbfColumnPtr column = DbfColumnPtr(new DbfColumn(stream, index++));
         columns_.push_back(column);
     }
